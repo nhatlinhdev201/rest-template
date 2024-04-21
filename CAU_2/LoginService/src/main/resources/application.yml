@@ -1,0 +1,13 @@
+jwt:
+  expiration: 3600000
+#// thời gian hết hạn theo mls = 1 giờ
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka:
+      value: true
+    fetch-registry:
+      value: true
+    instance:
+      hostname: localhost

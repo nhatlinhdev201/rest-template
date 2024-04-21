@@ -1,0 +1,30 @@
+jwt:
+  expiration: 3600000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka:
+      value: true
+    fetch-registry:
+      value: true
+    instance:
+      hostname: localhost
+
+spring:
+  application:
+    name: API_GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: LoginService
+          uri: lb://LoginService
+          predicates:
+            - Path=/auth/**, /api/v2/**
+        - id: RegisterService
+          uri: lb://RegisterService
+          predicates:
+            - Path=/api/v1/users/**
+          filters:
+            - AuthenticationFilter
